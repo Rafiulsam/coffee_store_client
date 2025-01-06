@@ -14,7 +14,17 @@ const AddCoffee = () => {
         const details = form.details.value
         const photo = form.photo.value
         const coffee = { name, price, supplier, test, category, details, photo }
-        console.log(coffee);
+
+        // check for empty fields
+        if (!name || !price || !supplier || !test || !category || !details || !photo) {
+            Swal.fire({
+                title: "Error",
+                text: "Please fill all the fields correctly.",
+                icon: "error",
+                confirmButtonText: "Okay",
+            });
+            return;
+        }
 
         //send data to server
         fetch('http://localhost:5000/coffees', {

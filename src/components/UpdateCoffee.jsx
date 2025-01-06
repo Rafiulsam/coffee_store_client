@@ -19,6 +19,18 @@ const UpdateCoffee = () => {
         const coffee = { name, price, supplier, test, category, details, photo }
         console.log(coffee);
 
+         // check for empty fields
+        if (!name || !price || !supplier || !test || !category || !details || !photo) {
+            Swal.fire({
+                title: "Error",
+                text: "Please fill all the fields correctly.",
+                icon: "error",
+                confirmButtonText: "Okay",
+            });
+            return;
+        }
+
+
         //send data to server
         fetch(`http://localhost:5000/coffees/${_id}`, {
             method: "PUT",
