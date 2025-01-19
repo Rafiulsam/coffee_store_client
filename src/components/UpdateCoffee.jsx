@@ -32,7 +32,7 @@ const UpdateCoffee = () => {
 
 
         //send data to server
-        fetch(`http://localhost:5000/coffees/${_id}`, {
+        fetch(`https://coffee-store-server-one-murex.vercel.app/coffees/${_id}`, {
             method: "PUT",
             headers: {
                 "content-type": 'application/json'

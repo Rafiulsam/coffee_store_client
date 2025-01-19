@@ -10,6 +10,10 @@ import Home from './components/Home.jsx';
 import AddCoffee from './components/AddCoffee.jsx';
 import UpdateCoffee from './components/UpdateCoffee.jsx';
 import CoffeeDetails from './components/CoffeeDetails.jsx';
+import SignIn from './components/SignIn.jsx';
+import SignUp from './components/SignUp.jsx';
+import AuthProvider from './Providers/AuthProvider.jsx';
+import Users from './components/Users.jsx';
 
 
 const router = createBrowserRouter([
@@ -20,7 +24,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/coffees")
+        loader: () => fetch("https://coffee-store-server-one-murex.vercel.app/coffees")
 
       },
       {
@@ -30,12 +34,25 @@ const router = createBrowserRouter([
       {
         path: "updateCoffee/:id",
         element: <UpdateCoffee></UpdateCoffee>,
-        loader: ({ params }) => fetch(`http://localhost:5000/coffees/${params.id}`)
+        loader: ({ params }) => fetch(`https://coffee-store-server-one-murex.vercel.app/coffees/${params.id}`)
       },
       {
         path: "coffeeDetails/:id",
         element: <CoffeeDetails></CoffeeDetails>,
-        loader: ({ params }) => fetch(`http://localhost:5000/coffees/${params.id}`)
+        loader: ({ params }) => fetch(`https://coffee-store-server-one-murex.vercel.app/coffees/${params.id}`)
+      },
+      {
+        path: "signin",
+        element: <SignIn></SignIn>,
+      },
+      {
+        path: "signup",
+        element: <SignUp></SignUp>,
+      },
+      {
+        path: "users",
+        element: <Users></Users>,
+        loader: ()=> fetch("https://coffee-store-server-one-murex.vercel.app/users")
       }
 
     ]
@@ -46,6 +63,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )

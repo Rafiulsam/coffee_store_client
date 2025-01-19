@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
 
@@ -10,8 +10,8 @@ const Header = () => {
     </>
 
     return (
-        <div className="navbar bg-base-100">
-            <div className="navbar-start">
+        <div className="navbar bg-base-300 ">
+            <div className="flex-grow">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                         <svg
@@ -30,7 +30,7 @@ const Header = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                          {links}
+                        {links}
                     </ul>
                 </div>
                 <h2 className='text-4xl font-bold'>Coffee Store</h2>
@@ -40,6 +40,9 @@ const Header = () => {
                     {links}
                 </ul>
             </div>
+            <Link to={"/signup"}>
+                <button className="btn btn-ghost">Sign Up</button>
+            </Link>
         </div>
     );
 };
